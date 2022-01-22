@@ -18,7 +18,7 @@
 
 * 直接打开即用
 
-下载可执行文件后直接运行即可，需要用户自行输入用户名`account`和密码`password`。本项目提供的可执行程序使用`pyinstaller`进行打包，目前仅适用于`Win10`，其他windows环境暂未测试。
+在[发布页](https://github.com/jcx70100/simitautologin/releases)下载可执行文件后直接运行即可，需要用户自行输入用户名`account`和密码`password`。本项目提供的可执行程序使用`pyinstaller`进行打包，目前仅适用于`Win10`，其他windows环境暂未测试。
 
 为了让登陆日志简单明了，出于隐私和安全性的考虑，本工具没有设计成后台运行，故请勿关闭命令行窗口，若不慎关闭，重新打开登录即可。
 
