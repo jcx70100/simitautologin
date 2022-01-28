@@ -19,7 +19,7 @@ def getRandomString(n = 32):
     _char = 'abcdefghijklmnopqrstuvwxyz0123456789'.upper()
     return ''.join((_char[random.randint(0, len(_char)-1)] for _ in range(n)))
 
-def login(username, password)    
+def login(username, password):    
     url = 'http://172.16.1.28:8080/PortalServer/Webauth/webAuthAction!login.action'
     data = {'userName': username,
             'password': password,
