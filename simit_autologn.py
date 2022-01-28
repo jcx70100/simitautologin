@@ -19,10 +19,7 @@ def getRandomString(n = 32):
     _char = 'abcdefghijklmnopqrstuvwxyz0123456789'.upper()
     return ''.join((_char[random.randint(0, len(_char)-1)] for _ in range(n)))
 
-def login(username, password):
-    if username is None or password is None:
-        raise IncompleteFieldException()
-    
+def login(username, password)    
     url = 'http://172.16.1.28:8080/PortalServer/Webauth/webAuthAction!login.action'
     data = {'userName': username,
             'password': password,
@@ -64,7 +61,29 @@ def sync(ipAddr, sessionID, XSRF_TOKEN):
     result = response.read().decode('utf-8')
     result_obj = json.loads(result)
     return result_obj
-    
+
+def loadConfig():
+    filename = "config.json"
+    try:
+        with open(filename, 'r') as f:
+            print(getTimeStr(), '已检测到配置文件,开始登录...')
+        #sleep(1)
+            return json.load(f)
+    except:
+        print(getTimeStr(), '未检测到配置文件...')
+        sleep(1)
+        print(getTimeStr(), '即将为您生生成空白配置文件 config.json ...')
+        sleep(1)
+        print(getTimeStr(), '请用文本编辑器修改配置文件中的用户名和密码后重新运行本程序.')
+        data = {
+            'username' : 9527,
+            'password' : 'password'
+        }
+        with open(filename, 'w') as f:
+            json.dump(data, f)
+        sleep(3)
+        sys.exit(0)
+        
 if __name__ == '__main__':
 
     DEBUG = False
@@ -75,14 +94,15 @@ if __name__ == '__main__':
 请安装并及时更新安全防护工具！
 ===============================================
 成功登陆后，请保持本窗开启，最小化即可！
-版本信息 v0.2
+版本信息 v0.3
 开源地址 https://github.com/jcx70100/simitautologin.git
     
     ''')
     print(getTimeStr(), 'SIMIT Auto Loginer has started.')
+    logindata = loadConfig()
+    USERNAME = logindata['username']
+    PASSWORD = logindata['password']
     sleep(1)
-    USERNAME = str(input(getTimeStr()+" Plz input your account: "))
-    PASSWORD = str(input(getTimeStr()+" Plz input your password: "))
 
     if DEBUG:
         print(getTimeStr(), 'Run in Debug Mode.')
